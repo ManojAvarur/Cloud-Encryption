@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="Assets/style.css">
+    <title>Encrypt/Decrypt</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron jumbotron-modified">
+            <h1 class="display-4">Hello, There!</h1>
+            <p class="lead">This website allows you to encrypt and decrypt(<span class="span-modified">which is
+                    encrypted using this website</span>) kind of data.</p>
+            <hr class="my-4">
+            <p>
+                <span class="span-modified">*NOTE : </span>It ecrypts the data and it never keeps any backup in the cloud
+                and it's an open source software which means that you can view the source code of this website. To view
+                the source code <a href="#" class="text-warning modified-text"> click here </a>
+            </p>
+            <hr class="my-4">
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                <div class="container">
+                    <div class="row modified-row">
+                        <div class="col-md-6 col-sm-12 modified-sm-12">
+                            <h3 class="modified-h3">To Encrypt</h3>
+                            <div class="center-al">
+                                <input type="file" name="upload" id="file"  onchange="Filevalidation()" required/>
+                                <br>
+                                <input type="submit" class="btn btn-primary btn-lg" name="enc" value="Encrypt">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 modified-sm-12">
+                            <h3 class="modified-h3">To Decrypt</h3>
+                            <div class="center-al">
+                                <input type="file" name="upload" id="file"   onchange="Filevalidation()" required/>
+                                <br>
+                                <input type="submit" class="btn btn-primary btn-lg" name="dec" value="Decrypt">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            </p> -->
+        </div>
+    </div>
+    <!-- <h1>Hello there!</h1>
+    <h3>Upload Your File Here</h3>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="upload" id="file"  onchange="Filevalidation()" />
+        <input type="submit" name="submit">
+    </form> -->
+</body>
+<script>
+    Filevalidation = () => {
+        const fi = document.getElementById('file');
+        if (fi.files[0].size > 41943040) {
+            alert('File to large!');
+            fi.value = "";
+        }
+    } 
+</script>
+
+</html>

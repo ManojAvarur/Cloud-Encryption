@@ -1,0 +1,31 @@
+.jumbotron-modified{
+    margin-top: 20px;
+}
+
+.span-modified{
+    color: red;
+}
+
+.modified-text{
+    text-align: justify;
+}
+
+.modified-row{
+    margin: auto;
+    width: 80%;
+}
+
+.modified-sm-12{
+    /* margin-top: 50px; */
+}
+
+.modified-h3{
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.center-al{
+    margin: auto;
+    width: 50%;
+}
