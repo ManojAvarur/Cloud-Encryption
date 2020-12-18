@@ -79,8 +79,25 @@ function DecryptFile($InFileName,$OutFileName,$password){
     }
 }
 
+function randmPasswordGenarator(){
 
-?>
+    // $caps = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+    // $nrml = array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
+    // $spl = array('!','@','#','$','%','^','&','*','(',')',')','_','+','{','}',':','"','>','?','<','\\','/','\'',';','.',',');
+
+    $ingrediats = [
+        ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
+        ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
+        ['!','@','#','$','%','^','&','*','(',')',')','_','+','{','}',':','"','>','?','<','\\','/','\'',';','.',',']
+    ];
+    $password = '';
+
+    for( $i = 0; $i <= 50; $i++ )
+        $password .= $ingrediats[ random_int(0,2) ][ random_int(0,25) ];
+
+    return $password;
+}
+
 
 
 // function encrypt_file($file, $destination, $passphrase) { 

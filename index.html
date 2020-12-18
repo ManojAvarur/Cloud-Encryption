@@ -10,6 +10,7 @@
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="Assets/style.css">
+    <link rel="icon" href="Assets/icoo.ico" type="image/x-icon">
     <title>Encrypt/Decrypt</title>
 </head>
 
@@ -21,45 +22,86 @@
                     encrypted using this website</span>) kind of data.</p>
             <hr class="my-4">
             <p>
-                <span class="span-modified">*NOTE : </span>It ecrypts the data and it never keeps any backup in the cloud
+                <span class="span-modified">*NOTE : </span>It ecrypts the data and it never keeps any backup in the
+                cloud
                 and it's an open source software which means that you can view the source code of this website. To view
-                the source code <a href="#" class="text-warning modified-text"> click here </a>
+                the source code <a href="https://github.com/ManojAvarur/Cloud-Encryption" target="_blank"
+                    class="text-warning modified-text"> click here </a>
             </p>
             <hr class="my-4">
-            <form action="upload.php" method="post" enctype="multipart/form-data">
-                <div class="container">
-                    <div class="row modified-row">
-                        <div class="col-md-6 col-sm-12 modified-sm-12">
-                            <h3 class="modified-h3">To Encrypt</h3>
-                            <div class="center-al">
-                                <input type="file" name="upload" id="file"  onchange="Filevalidation()" required/>
-                                <br>
-                                <input type="submit" class="btn btn-primary btn-lg" name="enc" value="Encrypt">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-12 modified-sm-12">
-                            <h3 class="modified-h3">To Decrypt</h3>
-                            <div class="center-al">
-                                <input type="file" name="upload" id="file"   onchange="Filevalidation()" required/>
-                                <br>
-                                <input type="submit" class="btn btn-primary btn-lg" name="dec" value="Decrypt">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
+            <div class="container">
+                <div class="row">
 
-            <!-- <p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-            </p> -->
+                    <form action="upload.php" method="post" enctype="multipart/form-data">
+
+                        <div class="col-md-6 col-sm-12 add-line">
+                            <h1 class="modified-h1">To Encrypt</h1>
+
+                            <div class="center-al">
+                                <input type="file" name="upload" id="file" onchange="Filevalidation()" required />
+                            </div>
+
+                            <div class="center-al">
+                                <table class="table table-alter">
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="radio" name="passwordType" value="createNew" id="newPass"
+                                                    onclick="newPassword()" checked='checked'></td>
+                                            <td><label for="newPass">Genrate New Password</label></td>
+                                        </tr>
+                                        <tr class="no-bottom-border">
+                                            <td><input type="radio" name="passwordType" value="useGiven" id="userPass"
+                                                    onclick="userPassword()"></td>
+                                            <td><label for="userPass">Personal Password</label></td>
+                                        </tr>
+                                        <tr class="no-bottom-border">
+                                            <td></td>
+                                            <td><input type="password" class="form-control-sm" name="userPassType"
+                                                    id="userPassType" placeholder="Password" disabled> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="center-al" style="margin-top: 15px;">
+                                <input type="submit" class="btn btn-primary btn-lg" name="submit" value="Encrypt">
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                    <form action="upload.php" method="post" enctype="multipart/form-data">
+
+                        <div class="col-md-6 col-sm-12 modified-sm-12 mov-down ">
+                            <h1 class="modified-h1">To Decrypt</h1>
+
+                            <div class="center-al">
+                                <input type="file" name="upload" id="file" onchange="Filevalidation()" required />
+                            </div>
+                            <br>
+                            <div class="center-al">
+                                <label for="password" class="passu">Password : </label>
+                                <input type="password" class="form-control-sm" name="decPass" id="password"
+                                    placeholder="Password" required>
+                            </div>
+                            <br>
+                            <div class="center-al" style="margin-top: 15px;">
+                                <input type="submit" class="btn btn-primary btn-lg" name="submit" value="Decrypt">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+            <hr class="my-4">
+            <p style="text-align: center;">
+                <span class="span-modified">*NOTE : </span> If the file is not downloaded after the computation the data
+                will be deleted and it cannot be accessed by the user.
+            </p>
         </div>
     </div>
-    <!-- <h1>Hello there!</h1>
-    <h3>Upload Your File Here</h3>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="upload" id="file"  onchange="Filevalidation()" />
-        <input type="submit" name="submit">
-    </form> -->
 </body>
 <script>
     Filevalidation = () => {
@@ -68,7 +110,19 @@
             alert('File to large!');
             fi.value = "";
         }
-    } 
+    }
+
+    newPassword = () => {
+        document.getElementById('userPassType').disabled = true;
+        document.getElementById('userPassType').required = false;
+    }
+
+    userPassword = () => {
+        document.getElementById('userPassType').disabled = false;
+        document.getElementById('userPassType').required = true;
+    }
+
+
 </script>
 
 </html>
