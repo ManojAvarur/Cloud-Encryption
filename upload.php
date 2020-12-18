@@ -8,7 +8,15 @@
 
         if( ! $file['error'] > 0 && $file['size'] < 41943040 ){
 
+            $type  = 'None';
+            $fileNotExist = false;
+
             if( isset( $_POST['submit'] ) && $_POST['submit'] == 'Encrypt'){
+
+                $type = 'Encrypt';
+
+                if( ! file_exists( 'Encrypted' ) )
+                    mkdir( 'Encrypted' );
 
                 if( ! file_exists( 'ToEncrypt' ) )
                     mkdir( 'ToEncrypt' );
@@ -17,15 +25,21 @@
 
                 move_uploaded_file( $file['tmp_name'], $file_name );
 
-                if( $_POST['passwordType'] == 'createNew' ){
-                    randmPasswordGenarator();
-                    CryptFile( $file_name, $outputLoc , randmPasswordGenarator() );
+                if( $_POST['passwordType'] == 'createNew' )
+                    $password = randmPasswordGenarator();
+                elseif( $_POST['passwordType'] == 'useGiven' ) 
+                    $password = $_POST['userPassEntered'];
 
-                    if( file_exists($file_name) )
-                        unlink($file_name);
+                CryptFile( $file_name, $outputLoc , $password );
 
-                    
+                if( file_exists($file_name) ){
+                    unlink($file_name);
+                } else {
+                    $fileNotExist = true;
                 }
+
+                $filesize = filesize($outputLoc); // bytes
+                $filesize = round($filesize / 1024 , 1); 
 
             }
 
@@ -89,15 +103,43 @@
                         <div class="card-header">
                             <h1 style="text-decoration: underline;">Download</h1>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title"> - File Name - </h5>
-                            <h5 class="card-title">Password : </h5>
-                            <p class="card-text">Your File Is Ready To Download</p>
-                            <a href="#" class="btn btn-primary">Download</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            - Size Of File -
-                        </div>
+
+                    <?php 
+
+                    if( ! $fileNotExist ){
+
+                        if( $type == 'Encrypt' ){
+
+                            // echo "
+                            //     <div class='card-body'>
+                            //         <h5 class='card-title'> " . $file['name'] . " </h5>
+                            //         <h5 class='card-title'>Password :  <span style='color: red'>" . $password . "</span> </h5>
+                            //         <p class='card-text'>Your File Is Ready To Download</p>
+                            //         <a href='#' class='btn btn-primary'>Download</a>
+                            //     </div>
+                            //     <div class='card-footer text-muted'>
+                            //     " . $filesize . " KB
+                            //     </div>
+                            // ";
+
+                            echo "
+                                <div class='card-body'>
+                                    <h5 class='card-title'>Special title treatment</h5>
+                                    <p class='card-text'>With supporting text below as a natural lead-in to additional content.</p>
+                                    <a href='#' class='btn btn-primary'>Go somewhere</a>
+                                </div>
+                            ";
+
+                        }
+
+                    } else {
+
+                    }
+                        
+                    
+                    ?>
+
+
                     </div>
 
                     <hr class="my-4">
