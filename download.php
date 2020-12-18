@@ -2,7 +2,7 @@
 
     if( isset( $_GET['file'] ) && !empty( $_GET['file'] ) ){
 
-        $file = 'Encrypted/'.$_GET['file'];
+        $file = $_GET['file'];
 
         if( file_exists( $file ) ){
 
@@ -25,7 +25,7 @@
 
             echo '<script>
                     alert("File has been downloaded");
-                    window.history.go(-2);    
+                    window.location.href = "index.html";    
                 </script>
             ';
 

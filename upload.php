@@ -4,14 +4,15 @@
     if( isset( $_POST['submit'] ) && !empty( $_FILES['upload'] ) ){
 
         $file = $_FILES['upload'];
-        $outputLoc = 'Encrypted/'.$file['name'];
 
         if( ! $file['error'] > 0 && $file['size'] < 41943040 ){
 
             $type  = 'None';
             $fileNotExist = false;
 
-            if( isset( $_POST['submit'] ) && $_POST['submit'] == 'Encrypt'){
+            if( $_POST['submit'] == 'Encrypt' ){
+
+                $outputLoc = 'Encrypted/-RemoveThisPart-'.md5( time() * random_int(1,10000) ).'-'.$file['name'];
 
                 $type = 'Encrypt';
 
@@ -21,16 +22,50 @@
                 if( ! file_exists( 'ToEncrypt' ) )
                     mkdir( 'ToEncrypt' );
 
-                $file_name = 'ToEncrypt/'.md5( time() * random_int(1,10000) ).'-'.$file['name'];
+                $file_name = 'ToEncrypt/-RemoveThisPart-'.md5( time() * random_int(1,10000) ).'-'.$file['name'];
 
                 move_uploaded_file( $file['tmp_name'], $file_name );
 
                 if( $_POST['passwordType'] == 'createNew' )
                     $password = randmPasswordGenarator();
-                elseif( $_POST['passwordType'] == 'useGiven' ) 
+                elseif( $_POST['passwordType'] == 'useGiven' && !empty( $_POST['userPassEntered'] ) ) 
                     $password = $_POST['userPassEntered'];
+                else
+                    null;
+                    // TODO: Do something
 
                 CryptFile( $file_name, $outputLoc , $password );
+
+                if( file_exists($file_name) ){
+                    unlink($file_name);
+                } else {
+                    $fileNotExist = true;
+                }
+
+                $filesize = filesize($outputLoc); // bytes
+                $filesize = round($filesize / 1024 , 1); 
+
+            } elseif( $_POST['submit'] == 'Decrypt' ){
+
+                $outputLoc = 'Decrypted/-RemoveThisPart-'.md5( time() * random_int(1,10000) ).'-'.$file['name'];
+
+
+                $type = 'Decrypt';
+
+                if( ! file_exists( 'Decrypted' ) )
+                    mkdir( 'Decrypted' );
+
+                if( ! file_exists( 'ToDecrypt' ) )
+                    mkdir( 'ToDecrypt' );
+
+                $file_name = 'ToDecrypt/-RemoveThisPart-'.md5( time() * random_int(1,10000) ).'-'.$file['name'];
+
+                move_uploaded_file( $file['tmp_name'], $file_name );
+
+                if( !empty( $_POST['decPass'] ) )
+                    $password = $_POST['decPass'];
+
+                DecryptFile( $file_name, $outputLoc, $password);
 
                 if( file_exists($file_name) ){
                     unlink($file_name);
@@ -118,7 +153,24 @@
                                     <!-- <input type='hidden' id='password' value='" . $password . "'> -->
                                     <button class='btn btn-primary' style='margin-bottom: 10px;' onclick='copyPassword()' id='copyPassword'>Copy Password</button>
                                     <p class='card-text'>Your File Is Ready To Download</p>
-                                    <a href='download.php?file=" . $file['name'] . "' onclick='downloaded()' id='downCompleted' class='btn btn-primary'>Download</a>
+                                    <a href='download.php?type=enc&&file=" . $outputLoc . "' onclick='downloaded()' id='downCompleted' class='btn btn-primary'>Download</a>
+                                </div>
+                                <div class='card-footer text-muted'>
+                                " . $filesize . " KB
+                                </div>
+                            ";
+
+                        } elseif( $type == 'Decrypt' ) {
+
+                            echo "
+                                <div class='card-header'>
+                                        <h1 style='text-decoration: underline;'>Download</h1>
+                                </div>
+                                <div class='card-body'>
+                                    <h5 class='card-title'> " . $file['name'] . " </h5>
+                                    <h5 class='card-title'>Typed Password :<span style='color: red' id='password'>" . $password . "</span></h5>
+                                    <p class='card-text'>Your File Is Ready To Download</p>
+                                    <a href='download.php?type=dec&&file=" . $outputLoc . "' onclick='downloaded()' id='downCompleted' class='btn btn-primary'>Download</a>
                                 </div>
                                 <div class='card-footer text-muted'>
                                 " . $filesize . " KB
@@ -160,6 +212,14 @@
         </div>
 </body>
 <script>
+
+    function downloaded(){
+        button = document.getElementById('downCompleted');
+        button.innerHTML = 'Downloaded ✔';
+        button.classList.add('btn-success');
+        // button.href = 'javascript:void()'
+    }
+
     <?php
         if( ! $fileNotExist ){
 
@@ -168,7 +228,7 @@
                 function copyPassword() {
                     var tempInput = document.createElement("input");
                     tempInput.style = "position: absolute; left: -1000px; top: -1000px";
-                    tempInput.value = '<?php echo $password ?>';
+                    tempInput.value = "<?php echo $password ?>";
                     document.body.appendChild(tempInput);
                     tempInput.select();
                     document.execCommand("copy");
@@ -178,12 +238,6 @@
                     button.classList.add('btn-success');
                 }
 
-                function downloaded(){
-                    button = document.getElementById('downCompleted');
-                    button.innerHTML = 'Downloaded ✔';
-                    button.classList.add('btn-success');
-                    // button.href = 'javascript:void()'
-                }
     <?php 
             }
         }
