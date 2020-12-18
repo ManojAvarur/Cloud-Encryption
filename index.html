@@ -122,6 +122,16 @@
         document.getElementById('userPassType').required = true;
     }
 
+    check = () => {
+
+       if(document.getElementById('userPass').checked){
+            document.getElementById('userPassType').disabled = false;
+            document.getElementById('userPassType').required = true;
+       }        
+
+    }
+
+    window.onload = check;
 
 </script>
 
