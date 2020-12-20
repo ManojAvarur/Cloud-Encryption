@@ -153,7 +153,10 @@
                                     <!-- <input type='hidden' id='password' value='" . $password . "'> -->
                                     <button class='btn btn-primary' style='margin-bottom: 10px;' onclick='copyPassword()' id='copyPassword'>Copy Password</button>
                                     <p class='card-text'>Your File Is Ready To Download</p>
-                                    <a href='download.php?type=enc&&file=" . $outputLoc . "' onclick='downloaded()' id='downCompleted' class='btn btn-primary'>Download</a>
+                                    <a href='download.php?fileName=" . $file['name'] . "&&type=enc&&file=" . $outputLoc . "' onclick='downloaded()' id='downCompleted' class='btn btn-primary'>Download</a>
+                                    <!-- <a href='index.html' id='goBack' hidden>Go Back</a>  -->  
+                                    <br>   
+                                    <input type='hidden' onclick='goBack()' name='submit' value='Go Back' id='goBack' class='btn btn-primary' style='margin-top:20px'>
                                 </div>
                                 <div class='card-footer text-muted'>
                                 " . $filesize . " KB
@@ -170,7 +173,10 @@
                                     <h5 class='card-title'> " . $file['name'] . " </h5>
                                     <h5 class='card-title'>Typed Password :<span style='color: red' id='password'>" . $password . "</span></h5>
                                     <p class='card-text'>Your File Is Ready To Download</p>
-                                    <a href='download.php?type=dec&&file=" . $outputLoc . "' onclick='downloaded()' id='downCompleted' class='btn btn-primary'>Download</a>
+                                    <a href='download.php?fileName=" . $file['name'] . "&& type=dec&&file=" . $outputLoc . "' onclick='downloaded()' id='downCompleted' class='btn btn-primary'>Download</a>
+                                    <!-- <a href='index.html' id='goBack' hidden>Go Back</a>  -->  
+                                    <br>
+                                    <input type='hidden' onclick='goBack()' name='submit' value='Go Back' id='goBack' class='btn btn-primary' style='margin-top:20px'>
                                 </div>
                                 <div class='card-footer text-muted'>
                                 " . $filesize . " KB
@@ -205,7 +211,7 @@
 
                     <hr class="my-4">
                     <p style="text-align: center;">
-                        <span class="span-modified">*NOTE : </span> If the enterd password is incorrect then the file will also be corrupted.
+                        <span class="span-modified">*NOTE : </span> <strong> If the enterd password is incorrect then the file will also be corrupted. </strong>
                     </p>
                 
             </div>
@@ -217,8 +223,12 @@
         button = document.getElementById('downCompleted');
         button.innerHTML = 'Downloaded ✔';
         button.classList.add('btn-success');
+        document.getElementById('goBack').type = "submit";
+
         // button.href = 'javascript:void()'
     }
+
+    goBack = () => window.location.href='index.html';
 
     <?php
         if( ! $fileNotExist ){

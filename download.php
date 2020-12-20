@@ -1,6 +1,6 @@
 <?php
 
-    if( isset( $_GET['file'] ) && !empty( $_GET['file'] ) ){
+    if( isset( $_GET['file'] ) && !empty( $_GET['file'] ) && isset( $_GET['fileName'] ) && !empty( $_GET['fileName'] ) ){
 
         $file = $_GET['file'];
 
@@ -8,7 +8,7 @@
 
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="'.basename( $file ).'"');
+            header('Content-Disposition: attachment; filename="'.basename( $_GET['fileName'] ).'"');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
