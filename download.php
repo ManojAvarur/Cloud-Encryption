@@ -167,6 +167,12 @@
                                 <div class='card-footer text-muted'>
                                 " . $filesize . " KB
                                 </div>
+
+                                
+                                <hr class='my-4'>
+                                <p style='text-align: center;'>
+                                    <span class='span-modified'>*NOTE : </span> <strong> If the entered password is incorrect then the file will also be corrupted. </strong>
+                                </p>
                             ";
 
                         }
@@ -195,10 +201,6 @@
                         will be deleted and it cannot be accessed by the user.
                     </p>
 
-                    <hr class="my-4">
-                    <p style="text-align: center;">
-                        <span class="span-modified">*NOTE : </span> <strong> If the entered password is incorrect then the file will also be corrupted. </strong>
-                    </p>
                 
             </div>
         </div>
@@ -289,15 +291,10 @@
             
             </div>
             <hr class="my-4">
-                    <p style="text-align: center;">
-                        <span class="span-modified">*NOTE : </span> If the file is not downloaded after the computation the data
-                        will be deleted and it cannot be accessed by the user.
-                    </p>
+            <p style="text-align: center;">
+                <span class="span-modified">*NOTE : </span> If the file is not downloaded after the computation the data will be deleted and it cannot be accessed by the user.
+            </p>
 
-                    <hr class="my-4">
-                    <p style="text-align: center;">
-                        <span class="span-modified">*NOTE : </span> If the enterd password is incorrect then the file will also be corrupted.
-                    </p>
         </div>
 </div>
 </body>
