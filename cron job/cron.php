@@ -1,19 +1,27 @@
 <?php
 
-    function deleteFiles( $location ){
+function deleteFiles( $location ){
 
-        $files = scandir( $location,1 );
+    $files = scandir($location,1);
 
-        for( $i = 0; $i < count( $files ) - 2; $i++ ){
-            if( file_exists( $location.'/'.$files[$i] ) )
-                unlink( $location.'/'.$files[$i] );
-        }
+    // echo $location;
 
+    // print_r( $files);
+
+    for( $i = 2; $i < count( $files ); $i++ ){
+        if( file_exists( $location.'/'.$files[$i] )  )
+            unlink( $location.'/'.$files[$i] );
+            // echo  $files[$i].'<br>';
     }
 
-    deleteFiles( '../Decrypted' );
-    deleteFiles( '../Encrypted' );
-    deleteFiles( '../ToDecrypt' );
-    deleteFiles( '../ToEncrypt' );
+}
+
+deleteFiles( '../Decrypted' );
+deleteFiles( '../Encrypted' );
+deleteFiles( '../ToDecrypt' );
+deleteFiles( '../ToEncrypt' );
+
+// echo 'Dobe';
+
 
 ?>
