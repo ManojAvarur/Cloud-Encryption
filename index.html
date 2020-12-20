@@ -22,7 +22,7 @@
                     encrypted using this website</span>) kind of data.</p>
             <hr class="my-4">
             <p>
-                <span class="span-modified">*NOTE : </span>It ecrypts the data and it never keeps any backup in the
+                <span class="span-modified">*NOTE : </span>It encrypts the data and it never keeps any backup in the
                 cloud
                 and it's an open source software which means that you can view the source code of this website. To view
                 the source code <a href="https://github.com/ManojAvarur/Cloud-Encryption" target="_blank"
@@ -47,7 +47,7 @@
                                         <tr>
                                             <td><input type="radio" name="passwordType" value="createNew" id="newPass"
                                                     onclick="newPassword()" checked='checked'></td>
-                                            <td><label for="newPass">Genrate New Password</label></td>
+                                            <td><label for="newPass">Generate New Password</label></td>
                                         </tr>
                                         <tr class="no-bottom-border">
                                             <td><input type="radio" name="passwordType" value="useGiven" id="userPass"
@@ -114,7 +114,7 @@
         var extension = fi.files[0].name.substring(fi.files[0].name.lastIndexOf('.'));
 
         if( formats.includes(extension.toLowerCase()) ){
-            alert("' "+extension+" ' not supported");
+            alert("' " + extension + " ' not supported!");
             fi.value = "";
         } else if (fi.files[0].size > 41943040) {
             alert('File to large!');

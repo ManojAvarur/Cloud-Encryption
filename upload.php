@@ -32,15 +32,14 @@
                     $password = $_POST['userPassEntered'];
                 else
                     null;
-                    // TODO: Do something
 
                 CryptFile( $file_name, $outputLoc , $password );
 
-                if( file_exists($file_name) ){
+                if( file_exists($file_name) )
                     unlink($file_name);
-                } else {
+
+                if( !file_exists( $outputLoc ) )
                     $fileNotExist = true;
-                }
 
                 $filesize = filesize($outputLoc); // bytes
                 $filesize = round($filesize / 1024 , 1); 
@@ -88,19 +87,6 @@
 
         }
 
-   
-
-
-
-//     if( ! file_exists( 'Encrypt' ) )
-//     mkdir( 'Encrypt' );
-
-// $file_name = 'Encrypt/'.md5( time() * random_int(1,10000) ).'-'.$file['name'];
-// move_uploaded_file( $file['tmp_name'], $file_name );
-
-// // CryptFile($file_name,'Encrypted/'.$file['name'],'12121231212123');  
-// DecryptFile('Encrypted/'.$file['name'], 'Dec/'.$file['name'], '12121231212123');
-// unlink($file_name);
 ?>
 
 <!DOCTYPE html>
@@ -125,7 +111,7 @@
                     encrypted using this website</span>) kind of data.</p>
             <hr class="my-4">
             <p>
-                <span class="span-modified">*NOTE : </span>It ecrypts the data and it never keeps any backup in the
+                <span class="span-modified">*NOTE : </span>It encrypts the data and it never keeps any backup in the
                 cloud
                 and it's an open source software which means that you can view the source code of this website. To view
                 the source code <a href="https://github.com/ManojAvarur/Cloud-Encryption" target="_blank"
@@ -144,8 +130,8 @@
                         if( $type == 'Encrypt' ){
 
                             echo "
-                                 <div class='card-header'>
-                                     <h1 style='text-decoration: underline;'>Download</h1>
+                                <div class='card-header'>
+                                    <h1 style='text-decoration: underline;'>Download</h1>
                                 </div>
                                 <div class='card-body'>
                                     <h5 class='card-title'> " . $file['name'] . " </h5>
@@ -190,7 +176,7 @@
                         echo "
                         <div class='card-body'>
                             <h5 class='card-title'>Who are you?</h5>
-                            <p class='card-text'>We could'nt find any of your files on our server. Please try again!</p>
+                            <p class='card-text'>We could'nt recognize you! Sorry, please try again!</p>
                             <a href='index.html' class='btn btn-primary'>Go Back</a>
                         </div>
                     ";
@@ -211,7 +197,7 @@
 
                     <hr class="my-4">
                     <p style="text-align: center;">
-                        <span class="span-modified">*NOTE : </span> <strong> If the enterd password is incorrect then the file will also be corrupted. </strong>
+                        <span class="span-modified">*NOTE : </span> <strong> If the entered password is incorrect then the file will also be corrupted. </strong>
                     </p>
                 
             </div>
@@ -224,8 +210,6 @@
         button.innerHTML = 'Downloaded ✔';
         button.classList.add('btn-success');
         document.getElementById('goBack').type = "submit";
-
-        // button.href = 'javascript:void()'
     }
 
     goBack = () => window.location.href='index.html';
@@ -256,7 +240,7 @@
 </script>
 </html>
 <?php
- } else {
+} else {
 
     
 ?>
@@ -283,7 +267,7 @@
                     encrypted using this website</span>) kind of data.</p>
             <hr class="my-4">
             <p>
-                <span class="span-modified">*NOTE : </span>It ecrypts the data and it never keeps any backup in the
+                <span class="span-modified">*NOTE : </span>It encrypts the data and it never keeps any backup in the
                 cloud
                 and it's an open source software which means that you can view the source code of this website. To view
                 the source code <a href="https://github.com/ManojAvarur/Cloud-Encryption" target="_blank"
@@ -296,7 +280,7 @@
 
                         <div class='card-body'>
                             <h5 class='card-title'>Who are you?</h5>
-                            <p class='card-text'>We could'nt find any of your files on our server. Please try again!</p>
+                            <p class='card-text'>We could'nt recognize you! Sorry, please try again!</p>
                             <a href='index.html' class='btn btn-primary'>Go Back</a>
                         </div>
                     
@@ -321,7 +305,6 @@
 
 <?php
 
- }
+}
 
- ?>
-  
+?>
