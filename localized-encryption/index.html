@@ -11601,7 +11601,7 @@
                         <div class="center-al" style="margin-top: 15px;">
                             <!-- <input type="submit" class="btn btn-primary btn-lg" name="submit" value="Encrypt"> -->
                             <button class="btn btn-primary btn-lg" onclick="javascript:encryptfile()" id="btnEncrypt" disabled>Encrypt File</button> &nbsp; 
-                            <button class="btn btn-primary" onclick="javascript:copytext()" id="copyPassword" hidden disabled>Copy Password</button>
+                            <button class="btn btn-primary copypass" onclick="javascript:copytext()" id="copyPassword" hidden disabled>Copy Password</button>
                             <br>
                             <br>
                             <a class='btn btn-primary' id='aEncsavefile' hidden>Download Encrypted File</a>
@@ -11935,6 +11935,10 @@
 
         .add-line {
             border-right: 0;
+        }
+
+        .copypass{
+            margin-top: 20px;
         }
     }
 </style>
