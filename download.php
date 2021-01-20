@@ -14,7 +14,9 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
 
             // print($_SERVER['REMOTE_ADDR']);
 
-            $outputLoc = 'Encrypted/-RemoveThisPart-' . md5( microtime().''.random_int( 1,100000 ).''.$_SERVER['REMOTE_ADDR'] ) . '-' . $file['name'];
+            $file_actual_name = '-RemoveThisPart-' . md5( microtime().''.random_int( 1,100000 ).''.$_SERVER['REMOTE_ADDR'] ) . '-' . $file['name'];
+
+            $outputLoc = 'Encrypted/'.$file_actual_name;
 
             $type = 'Encrypt';
 
@@ -23,8 +25,6 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
 
             if (!file_exists('ToEncrypt'))
                 mkdir('ToEncrypt');
-
-            $file_actual_name = '-RemoveThisPart-' . md5( microtime().''.random_int( 1,100000 ).''.$_SERVER['REMOTE_ADDR'] ) . '-' . $file['name'];
 
             $file_name = 'ToEncrypt/'.$file_actual_name;
 
@@ -50,7 +50,10 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
 
         } elseif ($_POST['submit'] == 'Decrypt') {
 
-            $outputLoc = 'Decrypted/-RemoveThisPart-' . md5( microtime().''.random_int( 1,100000 ).''.$_SERVER['REMOTE_ADDR'] ) . '-' . $file['name'];
+            $file_actual_name = '-RemoveThisPart-' . md5( microtime().''.random_int( 1,100000 ).''.$_SERVER['REMOTE_ADDR'] ) . '-' . $file['name'];
+
+
+            $outputLoc = 'Decrypted/'.$file_actual_name;
 
 
             $type = 'Decrypt';
@@ -61,7 +64,7 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
             if (!file_exists('ToDecrypt'))
                 mkdir('ToDecrypt');
 
-            $file_name = 'ToDecrypt/-RemoveThisPart-' . md5( microtime().''.random_int( 1,100000 ).''.$_SERVER['REMOTE_ADDR'] ) . '-' . $file['name'];
+            $file_name = 'ToDecrypt/' . $file_actual_name;
 
             move_uploaded_file($file['tmp_name'], $file_name);
 
@@ -299,12 +302,15 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
                     var responceText = '';
                     var downloadButton = document.getElementById('downCompleted');
                     var xhttp = new XMLHttpRequest();
-                    xhttp.open("POST", "_headers/fileMove.php" , true);
+                    xhttp.open("GET", "_headers/fileMove.php?<?php echo 'outFileLoc=' . $outputLoc . '&&fileName=' . $file_actual_name ?>" , true);
                     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    xhttp.send("<?php echo 'fileLoc=' . $outputLoc . '&&fileName=' . $file_actual_name ?> ");
+                    xhttp.send();
                     xhttp.onreadystatechange = function() {
-                        if ( this.readyState == 4 && this.status == 200  ) {
-                            alert(this.responseText);
+                        if ( this.readyState == 4 && this.status == 201  ) {
+                            alert('Failed to generate link!');
+                        } else if( this.status == 200 ) {
+                            alert('HI');
+                            // Add disable for th ebutton and generate link
                         }
                     };
                     // alert( responceText );

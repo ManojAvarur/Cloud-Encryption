@@ -1,25 +1,20 @@
 <?php
 
-    if( isset( $_POST['fileLoc'] ) && !empty( $_POST['fileLoc'] ) && isset( $_POST['fileName'] ) && !empty( $_POST['fileName'] ) ){
+    if( isset( $_GET['outFileLoc'] ) && !empty( $_GET['outFileLoc'] ) && isset( $_GET['fileName'] ) && !empty( $_GET['fileName'] ) ){
 
-        $fileLoc = '../'.$_POST['fileLoc'];
+        $outFileLoc = '../'.$_GET['outFileLoc'];
 
-        if( file_exists( $fileLoc ) ){
+        if( file_exists( $outFileLoc ) ){
 
             if( !file_exists( '../ToShare' ) )
                 mkdir('../ToShare');
-
-            // if( move_uploaded_file( $fileLoc, '../ToShare/'.$_POST['fileName'] ) ){
-            //     echo 'Success';
-            // } else {
-            //     echo 'Error';
-            // }
             
-            if( copy( $fileLoc, '../ToShare/'.$_POST['fileName'] ) ){
-                echo 'Success';
-            } else {
-                echo 'Error';
-            }
+            if(!  copy( $outFileLoc, '../ToShare/'.$_GET['fileName'] ) ){
+                var_dump(http_response_code(201));
+                // die('Failed To Generate Link!') ;
+            } 
+
+
 
         }
 
