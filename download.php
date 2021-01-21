@@ -155,15 +155,15 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
 
                                     <div style='width: 35px; padding: 5px; border: 0; box-shadow: 0; display: inline;'>
 
-                                        <a href='https://wa.me/?text=I%20Will%20Add%20The%20Link!' onclick='shareUsingLink()' id='whatsapp-link' style='text-decoration: none;' target='_blank'>
+                                        <a href='https://wa.me/?text=https://".$_SERVER['SERVER_NAME']."/file=".$file_actual_name."' onclick='shareUsingLink()' id='whatsapp-link' style='text-decoration: none;' target='_blank'>
                                             <img src='Assets/Icons/whatsapp.png' id='whatsapp-icon' style='margin-right:3px; width:44px; height: 44px' alt='Whatsapp' />
                                         </a>
 
-                                        <!-- <a href='http://www.facebook.com/sharer.php?u=I%20Will%20Add%20The%20Link!' onclick='shareUsingLink()' id='facebook-link' style='text-decoration: none;' target='_blank'>
+                                        <!-- <a href='http://www.facebook.com/sharer.php?u=https://".$_SERVER['SERVER_NAME']."./file=".$file_actual_name."' onclick='shareUsingLink()' id='facebook-link' style='text-decoration: none;' target='_blank'>
                                             <img src='Assets/Icons/facebook.png' id='facebook-icon' style='margin-right:3px; width:44px; height: 44px' alt='Facebook' />
                                         </a> -->
 
-                                        <a href='mailto:?Subject=Link To Download&amp;Body=I%20Will%20Add%20The%20Link!' onclick='shareUsingLink()' id='mail-link' style='text-decoration: none;' target='_blank'>
+                                        <a href='mailto:?Subject=Link To Download&amp;Body=https://".$_SERVER['SERVER_NAME']."./file=".$file_actual_name."' onclick='shareUsingLink()' id='mail-link' style='text-decoration: none;' target='_blank'>
                                             <img src='Assets/Icons/email.png' id='mail-icon' style='margin-right:3px; width:44px; height: 44px' alt='E-Mail' />
                                         </a>
 
@@ -282,24 +282,29 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
                     button.classList.add('btn-success');
                 }
 
-                function copyLink() {
-                    shareUsingLink();
-                    var tempInput = document.createElement("input");
-                    tempInput.style = "position: absolute; left: -1000px; top: -1000px";
-                    tempInput.value = escape(<?php echo json_encode('i"ll do some thing') ?>);
-                    document.body.appendChild(tempInput);
-                    tempInput.select();
-                    document.execCommand("copy");
-                    document.body.removeChild(tempInput);
-                    var iconLink = document.getElementById('copy-icon');
-                    iconLink.src = "Assets/Icons/link-copied.png";
-                    iconLink.alt = 'Link copied';
+                function copyLink(check=false) {
+                    if( !check ){
+                        shareUsingLink(true);
+                        return NaN;
+                    }
+                    if( check ){
+                        var tempInput = document.createElement("input");
+                        tempInput.style = "position: absolute; left: -1000px; top: -1000px";
+                        tempInput.value = <?php echo json_encode("https://".$_SERVER['SERVER_NAME']."/file=".$file_actual_name) ?>;
+                        document.body.appendChild(tempInput);
+                        tempInput.select();
+                        document.execCommand("copy");
+                        document.body.removeChild(tempInput);
+                        var iconLink = document.getElementById('copy-icon');
+                        iconLink.src = "Assets/Icons/link-copied.png";
+                        iconLink.alt = 'Link copied';
+                    } 
                 }
 
-                function shareUsingLink(){
+                function shareUsingLink(copylink = false){
 
-                    var responceCheck = false;
-                    var responceText = '';
+                    var check = false;
+                    // alert(check);
                     var downloadButton = document.getElementById('downCompleted');
                     var xhttp = new XMLHttpRequest();
                     xhttp.open("GET", "_headers/fileMove.php?<?php echo 'outFileLoc=' . $outputLoc . '&&fileName=' . $file_actual_name ?>" , true);
@@ -308,12 +313,24 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
                     xhttp.onreadystatechange = function() {
                         if ( this.readyState == 4 && this.status == 201  ) {
                             alert('Failed to generate link!');
-                        } else if( this.status == 200 ) {
-                            alert('HI');
-                            // Add disable for th ebutton and generate link
+                        } else if( this.readyState == 4 && this.status == 200 ) {
+                            downloadButton.href = 'javascript:void(0)';
+                            downloadButton.disable = true;
+                            downloadButton.onclick = null;
+                            changeOnclick();
+                            if( copylink ){
+                                copyLink(true);
+                            }
                         }
                     };
-                    // alert( responceText );
+                }
+
+                function changeOnclick(){
+                    document.getElementById('whatsapp-link').onclick = null;
+                    // document.getElementById('facebook-link').onclick = null;
+                    document.getElementById('mail-link').onclick = null;
+                    document.getElementById('copy-link').onclick = null;
+                    document.getElementById('copy-link').href = 'javascript:copyLink(true)';
                 }
 
         <?php

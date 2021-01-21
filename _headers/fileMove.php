@@ -2,19 +2,20 @@
 
     if( isset( $_GET['outFileLoc'] ) && !empty( $_GET['outFileLoc'] ) && isset( $_GET['fileName'] ) && !empty( $_GET['fileName'] ) ){
 
-        $outFileLoc = '../'.$_GET['outFileLoc'];
+        $inFileLoc = '../'.$_GET['outFileLoc'];
+        $outFileLoc = '../ToShare/'.$_GET['fileName'];
 
-        if( file_exists( $outFileLoc ) ){
+        if( file_exists( $inFileLoc ) ){
 
             if( !file_exists( '../ToShare' ) )
                 mkdir('../ToShare');
             
-            if(!  copy( $outFileLoc, '../ToShare/'.$_GET['fileName'] ) ){
+            if(!  copy( $inFileLoc, $outFileLoc ) ){
                 var_dump(http_response_code(201));
                 // die('Failed To Generate Link!') ;
             } 
 
-
+            unlink($inFileLoc);
 
         }
 
