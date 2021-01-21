@@ -48,6 +48,8 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
             $filesize = filesize($outputLoc); // bytes
             $filesize = round($filesize / 1024, 1);
 
+            $shareUisngLink = Cutly( "https://".$_SERVER['SERVER_NAME']."/SaveFromLink/".$file_actual_name );
+
         } elseif ($_POST['submit'] == 'Decrypt') {
 
             $file_actual_name = '-RemoveThisPart-' . md5( microtime().''.random_int( 1,100000 ).''.$_SERVER['REMOTE_ADDR'] ) . '-' . $file['name'];
@@ -155,15 +157,15 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
 
                                     <div style='width: 35px; padding: 5px; border: 0; box-shadow: 0; display: inline;'>
 
-                                        <a href='https://wa.me/?text=https://".$_SERVER['SERVER_NAME']."/SaveFromLink/".$file_actual_name."' onclick='shareUsingLink()' id='whatsapp-link' style='text-decoration: none;' target='_blank'>
+                                        <a href='https://wa.me/?text=*Hello%20there!* %0aThere%20is%20a%20file%20waiting%20for%20you%20in%20our%20servers.. %0a %0a".$shareUisngLink."' onclick='shareUsingLink()' id='whatsapp-link' style='text-decoration: none;' target='_blank'>
                                             <img src='Assets/Icons/whatsapp.png' id='whatsapp-icon' style='margin-right:3px; width:44px; height: 44px' alt='Whatsapp' />
                                         </a>
 
-                                        <!-- <a href='http://www.facebook.com/sharer.php?u=https://".$_SERVER['SERVER_NAME']."./file=".$file_actual_name."' onclick='shareUsingLink()' id='facebook-link' style='text-decoration: none;' target='_blank'>
+                                        <!-- <a href='http://www.facebook.com/sharer.php?u=*Hello%20there!* %0aThere%20is%20a%20file%20waiting%20for%20you%20in%20our%20servers.. %0a %0a".$shareUisngLink."' onclick='shareUsingLink()' id='facebook-link' style='text-decoration: none;' target='_blank'>
                                             <img src='Assets/Icons/facebook.png' id='facebook-icon' style='margin-right:3px; width:44px; height: 44px' alt='Facebook' />
                                         </a> -->
 
-                                        <a href='mailto:?Subject=Link To Download&amp;Body=https://".$_SERVER['SERVER_NAME']."./file=".$file_actual_name."' onclick='shareUsingLink()' id='mail-link' style='text-decoration: none;' target='_blank'>
+                                        <a href='mailto:Enter_the_recipient_mail_address?Subject=Link To Download&amp;Body=Hello%20there!%0D%0AThere%20is%20a%20file%20waiting%20for%20you%20in%20our%20servers.. %0D%0A %0D%0A".$shareUisngLink."' onclick='shareUsingLink()' id='mail-link' style='text-decoration: none;' target='_blank'>
                                             <img src='Assets/Icons/email.png' id='mail-icon' style='margin-right:3px; width:44px; height: 44px' alt='E-Mail' />
                                         </a>
 
@@ -239,6 +241,9 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
             button.innerHTML = 'Downloaded ✔';
             button.classList.add('btn-success');
             document.getElementById('goBack').type = "submit";
+            // if( button.classList.includes('btn-success') ){
+                // alert(typeof(button.classList));
+            // }
 
             if( window.copyPassword ){
 
@@ -290,7 +295,7 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
                     if( check ){
                         var tempInput = document.createElement("input");
                         tempInput.style = "position: absolute; left: -1000px; top: -1000px";
-                        tempInput.value = <?php echo json_encode("https://".$_SERVER['SERVER_NAME']."/SaveFromLink/".$file_actual_name) ?>;
+                        tempInput.value = "<?php echo $shareUisngLink ?>";
                         document.body.appendChild(tempInput);
                         tempInput.select();
                         document.execCommand("copy");
@@ -317,6 +322,7 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
                             downloadButton.href = 'javascript:void(0)';
                             downloadButton.disable = true;
                             downloadButton.onclick = null;
+                            downloadButton.classList.add('isDisabled');
                             changeOnclick();
                             if( copylink ){
                                 copyLink(true);
