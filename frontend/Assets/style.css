@@ -1,0 +1,293 @@
+.icon {
+    height: 50px;
+    width: 50px;
+    float: left;
+    margin-left: 15px;
+    padding: 2px;
+}
+
+#header {
+    transition: all 0.5s;
+    z-index: 997;
+    padding: 15px 0;
+}
+
+.hd{
+    float: left;
+    color:#c6c7c8;
+    margin-top:3px;
+    font-family: 'Potta One', cursive;
+}
+
+.he {
+    font-size: 40px;
+    color:#012C4B;
+}
+
+@media(max-width: 1199px){
+    #picture, #pict {
+        width: 100%;
+        height: 100vh;
+        background: url("https://images.unsplash.com/photo-1536859355448-76f92ebdc33d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+        background-size: cover;
+    }
+}
+
+@media(min-width: 1200px){
+    #picture{
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-image: url("cover2.jpg");
+    }
+
+    #pict{
+        width: 100%;
+        height: 100vh;
+        background: url("https://images.unsplash.com/photo-1548092372-0d1bd40894a3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80.jpg");
+        background-size: cover;
+    }
+
+    #pict1{
+        background-image: url("https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80");
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+    }
+}
+
+#footer {
+    background: black;
+    color: #fff;
+    font-size: 14px;
+}
+
+#footer .footer-top {
+    background: #151515;
+    border-bottom: 1px solid #222222;
+    padding: 60px 0 30px 0;
+}
+
+#footer .footer-top .footer-left {
+    margin-bottom: 30px;
+}
+
+#footer .footer-top .footer-left h3 {
+    font-size: 28px;
+    margin: 0 0 20px 0;
+    padding: 2px 0 2px 0;
+    line-height: 1;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#footer .footer-top .footer-left h3 span {
+    color: #012C4B;
+}
+
+#footer .footer-top .footer-links {
+    margin-bottom: 30px;
+}
+
+#footer .footer-top .footer-left p {
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 0;
+    font-family: "Raleway", sans-serif;
+    color: #fff;
+}
+
+#footer .footer-top h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+#footer .footer-top .footer-links h4 {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#footer .footer-top .footer-links h4 i {
+    padding-right: 2px;
+    color: #012C4B;
+    font-size: 18px;
+    line-height: 1;
+}
+
+#footer .footer-top .footer-links h4 a {
+    color: #fff;
+    transition: 0.3s;
+    display: inline-block;
+    line-height: 1;
+}
+
+#footer .footer-top .footer-links h4 a:hover {
+    color: #012C4B;
+}
+
+
+.typewriter h1 {
+    color: #fff;
+    font-family: monospace;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation: 
+    typing 3.5s steps(30, end),
+    blink-caret .5s step-end infinite;
+}
+
+  /* The typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+  /* The typewriter cursor effect */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange }
+}
+
+.btn-outline-new{
+    border-color:#012C4B;
+    color:white;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.btn-outline-new:hover{
+    background-color: #012C4B;
+}
+
+.blk{
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 25px;
+    border-radius: 20px;
+}
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.file-upload{
+    display:block;
+    text-align:center;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+}
+
+.file-upload .file-select{display:block;
+    border: 2px solid #c6c7c8;
+    color: #012C4B;
+    cursor:pointer;
+    height:40px;
+    line-height:40px;
+    text-align:left;
+    background:#FFFFFF;
+    overflow:hidden;
+    position:relative;
+}
+
+.file-upload .file-select .file-select-button{background:#c6c7c8;
+    padding:0 10px;
+    display:inline-block;
+    height:40px;
+    line-height:40px;
+}
+
+.file-upload .file-select .file-select-name{line-height:40px;
+    display:inline-block;
+    padding:0 10px;
+}
+
+.file-upload .file-select:hover{border-color:#012C4B;
+    transition:all .2s ease-in-out;
+    -moz-transition:all .2s ease-in-out;
+    -webkit-transition:all .2s ease-in-out;
+    -o-transition:all .2s ease-in-out;
+}
+
+.file-upload .file-select:hover .file-select-button{background:#012C4B;
+    color:#FFFFFF;
+    transition:all .2s ease-in-out;
+    -moz-transition:all .2s ease-in-out;
+    -webkit-transition:all .2s ease-in-out;
+    -o-transition:all .2s ease-in-out;
+}
+
+.file-upload.active .file-select{border-color:#3fa46a;
+    transition:all .2s ease-in-out;
+    -moz-transition:all .2s ease-in-out;
+    -webkit-transition:all .2s ease-in-out;
+    -o-transition:all .2s ease-in-out;
+}
+
+.file-upload.active .file-select .file-select-button{background:#3fa46a;
+    color:#FFFFFF;
+    transition:all .2s ease-in-out;
+    -moz-transition:all .2s ease-in-out;
+    -webkit-transition:all .2s ease-in-out;
+    -o-transition:all .2s ease-in-out;
+}
+
+.file-upload .file-select input[type=file]{z-index:100;
+    cursor:pointer;
+    position:absolute;
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    opacity:0;
+    filter:alpha(opacity=0);
+}
+
+.file-upload .file-select.file-select-disabled{
+    opacity:0.65;
+}
+
+.file-upload .file-select.file-select-disabled:hover{cursor:default;
+    display:block;
+    border: 2px solid #c6c7c8;
+    color: #012C4B;
+    cursor:pointer;
+    height:40px;
+    line-height:40px;
+    margin-top:5px;
+    text-align:left;
+    background:#FFFFFF;
+    overflow:hidden;
+    position:relative;
+}
+
+.file-upload .file-select.file-select-disabled:hover .file-select-button{background:#c6c7c8;
+    color:#666666;
+    padding:0 10px;
+    display:inline-block;
+    height:40px;
+    line-height:40px;
+}
+
+.file-upload .file-select.file-select-disabled:hover .file-select-name{line-height:40px;
+    display:inline-block;
+    padding:0 10px;
+}
+
+.rad{
+    color: #c6c7c8;
+    font-size: medium
+}
+
+.ft{
+    font-family: 'Poiret One', cursive;
+    margin-left: 20px;
+}
