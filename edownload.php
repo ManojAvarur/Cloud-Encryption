@@ -1,9 +1,9 @@
 <?php
 include '_headers/headers.php';
 
-if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
+if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
 
-    $file = $_FILES['upload'];
+    $file = $_FILES['chooseFile'];
 
     if (!$file['error'] > 0 && $file['size'] < 41943040) {
 
@@ -109,22 +109,26 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
                         <table style="width:100%">
                             <tr>
                                 <td class = "prop">File name: </td>
-                                <td class = "ans"><?php echo $file['name'] ?></td>
+                                <td class = "ans"><span class="d-inline-block text-truncate" style="max-width: 230px;"><?php echo $file['name'] ?></span></td>
                             </tr>
                             <tr>
                                 <td class = "prop">Password: </td>
-                                <td class = "ans">jklmnopq@123</td>
+                                <td class = "ans"><span class="d-inline-block text-truncate" style="max-width: 230px;"><?php echo $password ?></span></td>
                             </tr>
                             <tr>
                                 <td class = "prop">File Size: </td>
-                                <td class = "ans">Secret</td>
+                                <td class = "ans"><span class="d-inline-block text-truncate" style="max-width: 230px;"><?php echo $filesize ?></span></td>
                             </tr>
                         </table>
                         <br>
 
                         <div class = "text-center">
+                            <button type="button" class="btn btn-outline-danger btn-sm " onclick='copyPassword()' id='copyPassword'>Copy Password</button>
+                            <br><br>
                             <h3 class = "head">You can download the file</h3>
-                            <button type="button" class="btn btn-outline-success btn-lg ">Download</button>
+                            <br>
+                            <a href="<?php echo "saveas.php?fileName=". $file['name'] . "&&type=enc&&file=" . $outputLoc; ?>" onclick="downloaded()" id="downCompleted" class="btn btn-outline-danger btn-lg ">Download</a>
+                            <!-- <button href="<?php echo "saveas.php?fileName=". $file['name'] . "&&type=enc&&file=" . $outputLoc; ?>" onclick='downloaded()' id='downCompleted' type="button" class="btn btn-outline-danger btn-lg ">Download</button> -->
                         </div>
                         <br>
 
@@ -135,12 +139,12 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
 
                         <div class = "text-center">
                             <ul class="social-network social-circle">
-                                <li><a href="#" class="icoen" title="Mail"><i class="fa fa-envelope"></i></a></li>
-                                <li><a href="#" class="icoWhatsapp" title="Whatsapp"><i class="fa fa-whatsapp"></i></a></li>
-                                <li><a href="#" class="icoShare" title="Share"><i class="fa fa-link"></i></a></li>
+                                <li> <a href="mailto:Enter_the_recipient_mail_address?Subject=Link To Download&amp;Body=Hello%20there!%0D%0AThere%20is%20a%20file%20waiting%20for%20you%20in%20our%20servers.. %0D%0A %0D%0A<?php echo $shareUisngLink ?>" onclick='shareUsingLink()' target='_blank' id='mail-link' class="icoen" title="Mail" id="mail-link" > <i class="fa fa-envelope" id="mail-icon"></i> </a> </li>
+                                <li> <a href="https://wa.me/?text=*Hello%20there!* %0aThere%20is%20a%20file%20waiting%20for%20you%20in%20our%20servers.. %0a %0a<?php echo $shareUisngLink ?>" onclick="shareUsingLink()" class="icoWhatsapp" id="whatsapp-link" title="Whatsapp" target='_blank'> <i class="fa fa-whatsapp" id="whatsapp-icon"></i> </a> </li>
+                                <li> <a onclick="copyLink()" href="javascript:void(0)" id="copy-link" class="icoShare" title="Share"> <i class="fa fa-link" id="copy-icon"></i> </a> </li>
                                 <br>
                                 <br>
-                                <a href = "index.html"><button type="button" class="btn btn-outline-warning">Home page</button></a>
+                                <a href = "index.php"><input type="hidden" id="goBack" class="btn btn-outline-warning" value="Home page"></a>
                             </ul>
                         </div>
                     </div>
@@ -198,6 +202,104 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 
+        <script>
+            function downloaded() {
+                button = document.getElementById('downCompleted');
+                button.innerHTML = 'Downloaded ✔';
+                button.classList.remove('btn-outline-danger');
+                button.classList.add('btn-outline-success');
+                // button.href = "javascript:void(0)";
+                document.getElementById('goBack').type = "submit";
+                // if( button.classList.includes('btn-success') ){
+                    // alert(typeof(button.classList));
+                // }
+
+                if( window.copyPassword ){
+
+                    document.getElementById('whatsapp-link').href = 'javascript:void(0)';
+                    document.getElementById('whatsapp-link').target = '';
+                    document.getElementById('whatsapp-link').onclick = null;
+
+                    document.getElementById('mail-link').href = 'javascript:void(0)';
+                    document.getElementById('mail-link').target = '';
+                    document.getElementById('mail-link').onclick = null;
+
+                    document.getElementById('copy-link').onclick = null;
+
+                    document.getElementById('whatsapp-icon').classList.add('isDisabled');
+                    document.getElementById('mail-icon').classList.add('isDisabled');
+                    document.getElementById('copy-icon').classList.add('isDisabled');
+
+                }
+            }
+
+            function copyPassword() {
+                var tempInput = document.createElement("input");
+                tempInput.style = "position: absolute; left: -1000px; top: -1000px";
+                tempInput.value = "<?php echo $password ?>";
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand("copy");
+                document.body.removeChild(tempInput);
+                button = document.getElementById('copyPassword');
+                button.innerHTML = 'Copied ✔';
+                button.classList.remove('btn-outline-danger');
+                button.classList.add('btn-outline-success');
+            }
+
+            function copyLink(check=false) {
+                    if( !check ){
+                        shareUsingLink(true);
+                        return NaN;
+                    }
+                    if( check ){
+                        var tempInput = document.createElement("input");
+                        tempInput.style = "position: absolute; left: -1000px; top: -1000px";
+                        tempInput.value = "<?php echo $shareUisngLink ?>";
+                        document.body.appendChild(tempInput);
+                        tempInput.select();
+                        document.execCommand("copy");
+                        document.body.removeChild(tempInput);
+                        // var iconLink = document.getElementById('copy-icon');
+                        // iconLink.src = "Assets/Icons/link-copied.png";
+                        // iconLink.alt = 'Link copied';
+                    } 
+                }
+
+                function shareUsingLink(copylink = false){
+
+                    var check = false;
+                    // alert(check);
+                    var downloadButton = document.getElementById('downCompleted');
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.open("GET", "_headers/fileMove.php?<?php echo 'outFileLoc=' . $outputLoc . '&&fileName=' . $file_actual_name ?>" , true);
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhttp.send();
+                    xhttp.onreadystatechange = function() {
+                        if ( this.readyState == 4 && this.status == 201  ) {
+                            alert('Failed to generate link!');
+                        } else if( this.readyState == 4 && this.status == 200 ) {
+                            document.getElementById('goBack').type = "submit";
+                            downloadButton.href = 'javascript:void(0)';
+                            downloadButton.disable = true;
+                            downloadButton.onclick = null;
+                            downloadButton.classList.add('isDisabled');
+                            changeOnclick();
+                            if( copylink ){
+                                copyLink(true);
+                            }
+                        }
+                    };
+                }
+
+                function changeOnclick(){
+                    document.getElementById('whatsapp-link').onclick = null;
+                    // document.getElementById('facebook-link').onclick = null;
+                    document.getElementById('mail-link').onclick = null;
+                    document.getElementById('copy-link').onclick = null;
+                    document.getElementById('copy-link').href = 'javascript:copyLink(true)';
+                }
+        </script>
 
     </body>
 </html>

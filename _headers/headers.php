@@ -89,7 +89,7 @@ function randmPasswordGenarator(){
     
     $password = '';
 
-    for( $i = 0; $i <= 50; $i++ )
+    for( $i = 0; $i <= 40; $i++ )
         $password .= $ingredients[ random_int(0,2) ][ random_int(0,25) ];
 
     return $password;
