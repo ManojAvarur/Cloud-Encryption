@@ -1,9 +1,9 @@
 <?php
 include '_headers/headers.php';
 
-if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
+if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
 
-    $file = $_FILES['upload'];
+    $file = $_FILES['chooseFile'];
 
     if (!$file['error'] > 0 && $file['size'] < 41943040) {
 
@@ -179,7 +179,8 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
             function downloaded() {
                 button = document.getElementById('downCompleted');
                 button.innerHTML = 'Downloaded ✔';
-                button.classList.add('btn-success');
+                button.classList.remove('btn-outline-danger');
+                button.classList.add('btn-outline-success');
                 document.getElementById('goBack').type = "submit";
                 // if( button.classList.includes('btn-success') ){
                     // alert(typeof(button.classList));
