@@ -129,24 +129,6 @@
             }
         );
 
-        function fileValidation(value) {
-
-            const fi = document.getElementById(value);
-
-            var formats = ['.mkv','.webm', '.mpg', '.mp2', '.mpeg', '.mpe', '.mpv', '.ogg', '.mp4', '.m4p', '.m4v', '.avi', '.wmv', '.mov', '.qt', '.flv', '.swf', '.avchd'];
-
-            var extension = fi.files[0].name.substring(fi.files[0].name.lastIndexOf('.'));
-
-            if( formats.includes(extension.toLowerCase()) ){
-                alert("' " + extension + " ' not supported!");
-                fi.value = "";
-            } else if (fi.files[0].size > 41943040) {
-                alert('File to large!');
-                fi.value = "";
-            }
-            }
-
-
             newPassword = () => {
             document.getElementById('userPassType').disabled = true;
             document.getElementById('userPassType').required = false;
