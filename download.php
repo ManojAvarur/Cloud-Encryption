@@ -155,7 +155,7 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
 
                                     <div style='width: 35px; padding: 5px; border: 0; box-shadow: 0; display: inline;'>
 
-                                        <a href='https://wa.me/?text=https://".$_SERVER['SERVER_NAME']."/file=".$file_actual_name."' onclick='shareUsingLink()' id='whatsapp-link' style='text-decoration: none;' target='_blank'>
+                                        <a href='https://wa.me/?text=https://".$_SERVER['SERVER_NAME']."/SaveFromLink/".$file_actual_name."' onclick='shareUsingLink()' id='whatsapp-link' style='text-decoration: none;' target='_blank'>
                                             <img src='Assets/Icons/whatsapp.png' id='whatsapp-icon' style='margin-right:3px; width:44px; height: 44px' alt='Whatsapp' />
                                         </a>
 
@@ -290,7 +290,7 @@ if (isset($_POST['submit']) && !empty($_FILES['upload'])) {
                     if( check ){
                         var tempInput = document.createElement("input");
                         tempInput.style = "position: absolute; left: -1000px; top: -1000px";
-                        tempInput.value = <?php echo json_encode("https://".$_SERVER['SERVER_NAME']."/file=".$file_actual_name) ?>;
+                        tempInput.value = <?php echo json_encode("https://".$_SERVER['SERVER_NAME']."/SaveFromLink/".$file_actual_name) ?>;
                         document.body.appendChild(tempInput);
                         tempInput.select();
                         document.execCommand("copy");

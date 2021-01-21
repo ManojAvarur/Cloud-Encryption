@@ -15,4 +15,5 @@
 // unlink($file);
 
 // echo $_SERVER['SERVER_NAME'];
-echo 'https://'.$_SERVER['SERVER_NAME'].'/file=';
+// echo 'https://'.$_SERVER['SERVER_NAME'].'/file=';
+
