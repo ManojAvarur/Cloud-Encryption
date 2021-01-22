@@ -120,6 +120,10 @@ include '_headers/headers.php';
 
                     $password = $_POST['hidden-password'];
 
+                    if( !file_exists('Decrypted') ){
+                        mkdir('Decrypted');
+                    }
+
                     DecryptFile($inloc, $outLoc, $password);
 
                     if (file_exists($inloc)) {
@@ -127,7 +131,7 @@ include '_headers/headers.php';
                     }
 
                     if (!file_exists($outLoc)) {
-                        die('../' . $outLoc . '');
+                        // die('../' . $outLoc . '');
                         header('location:whoareyou.html');
                     }
 
