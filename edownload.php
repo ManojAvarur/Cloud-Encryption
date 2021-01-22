@@ -122,7 +122,7 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
                         <br>
 
                         <div class="text-center">
-                            <button type="button" class="btn btn-outline-danger btn-sm " onclick='copyPassword()' id='copyPassword'>Copy Password</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm " onclick='copyPassword()' id='copyPassword'>Copy Password</button>
                             <br><br>
                             <h3 class="head">You can download the file</h3>
                             <br>
