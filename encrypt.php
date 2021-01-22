@@ -18,15 +18,17 @@
 
 <body>
 
-    <div>
-        <header id="header" class="fixed-top container-fluid">
-            <img src="Assets/icoo.png" alt="Icon" class="icon">
-            <div>
-                <h2 class="hd">
-                    Encryptus<span class="he">.</span>
-                </h2>
-            </div>
-    </div>
+        <div>
+            <header id="header" class="fixed-top container-fluid">
+                <a href="index.php" style="text-decoration: none;">
+                    <img src="Assets/icoo.png" alt="Icon" class = "icon">
+                    <div>
+                        <h2 class="hd">
+                            Encryptus<span class = "he">.</span>
+                        </h2>
+                    </div>
+                </a>
+        </div>
 
     <section id="pict" class="d-flex align-items-center justify-content-center">
         <div class="container">
