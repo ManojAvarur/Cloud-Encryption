@@ -71,7 +71,7 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Potta+One&display=swap" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
+        <link rel="icon" href="Assets/icoo.ico" type="image/x-icon">
 
         <title>Encryptus</title>
     </head>
