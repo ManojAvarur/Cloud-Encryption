@@ -45,13 +45,13 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
             $filesize = filesize($outputLoc); // bytes
             $filesize = round($filesize / 1024, 1);
 
-            $shareUisngLink = Cutly("https://" . $_SERVER['SERVER_NAME'] . "/savefromlink.php?filename=" . $file_actual_name);
+            $shareUisngLink = Cutly("https://" . $_SERVER['SERVER_NAME'] . "/cc/savefromlink.php?filename=" . $file_actual_name);
         }
     } else {
 
         echo "<script>
                     alert('Error in uploading file');
-                    window.location.href = 'index.html';
+                    window.location.href = 'index.php';
                 </script>";
     }
 
