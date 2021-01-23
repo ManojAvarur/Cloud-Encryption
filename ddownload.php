@@ -1,7 +1,7 @@
 <?php
 include '_headers/headers.php';
 
-if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
+if ( isset($_POST['submit']) && !empty($_FILES['chooseFile']) && isset( $_POST['decPass'] ) && !empty($_POST['decPass']) ) {
 
     $file = $_FILES['chooseFile'];
 
@@ -22,9 +22,9 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
 
         move_uploaded_file($file['tmp_name'], $file_name);
 
-        if (!empty($_POST['decPass']))
+        // if (!empty($_POST['decPass'])){
             $password = $_POST['decPass'];
-
+        // }
         DecryptFile($file_name, $outputLoc, $password);
 
         if (file_exists($file_name)) {
@@ -114,7 +114,7 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
                         <div class="text-center">
                             <h3 class="head">You can download the file</h3>
                             <!-- <button type="button" class="btn btn-outline-success btn-lg ">Download</button> -->
-                            <a href="<?php echo "saveas.php?fileName=" . $file['name'] . "&&type=dec&&file=" . $outputLoc; ?>" onclick="downloaded()" id="downCompleted" class="btn btn-outline-danger btn-lg ">Download</a>
+                            <a href="<?php echo "saveas.php?fileName=" . $file['name'] . "&&type=dec&&file=" . $file_actual_name ?>" onclick="downloaded()" id="downCompleted" class="btn btn-outline-danger btn-lg ">Download</a>
                             <br>
                             <br>
                             <a href="index.php"><input type="hidden" id="goBack" class="btn btn-outline-warning" value="Home page"></a>
