@@ -78,7 +78,8 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
 
     <body>
 
-        <div>
+        <div class = "App">
+        <div class = "row">
             <header id="header" class="fixed-top container-fluid">
                 <a href="index.php" style="text-decoration: none;">
                     <img src="Assets/icoo.png" alt="Icon" class="icon">
@@ -92,10 +93,11 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
 
         <section id="pict" class="d-flex align-items-center justify-content-center">
             <div class="container">
-                <div class="row">
+                <div class = "row" style = "height: 60px;"></div>
+                <div class="row mb-4">
                     <div class="col-lg-3"></div>
 
-                    <div class="col-lg-6 blk">
+                    <div class="col-lg-6 blk mb-4">
 
                         <div class="typewriter">
                             <h1>File ready to download..</h1>
@@ -122,8 +124,9 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
                         <br>
 
                         <div class="text-center">
-                            <button type="button" class="btn btn-outline-secondary btn-sm " onclick='copyPassword()' id='copyPassword'>Copy Password</button>
-                            <br><br>
+                            <button type="button" class="btn btn-outline-danger btn-sm " onclick='copyPassword()' id='copyPassword'>Copy Password</button>
+                            <br>
+                            <br>
                             <h3 class="head">You can download the file</h3>
                             <br>
                             <a href="<?php echo "saveas.php?fileName=" . $file['name'] . "&&type=enc&&file=" . $outputLoc; ?>" onclick="downloaded()" id="downCompleted" class="btn btn-outline-danger btn-lg ">Download</a>
@@ -152,7 +155,9 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
 
                     </div>
                 </div>
+                <!-- <div class = "row " style = "height = 75px;"></div> -->
             </div>
+            
         </section>
 
         <footer id="footer">
@@ -195,6 +200,7 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
                 </div>
             </div>
         </footer>
+        </div>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

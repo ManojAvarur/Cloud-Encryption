@@ -82,42 +82,26 @@
     background: black;
     color: #fff;
     font-size: 14px;
+    bottom: 0;
+    height: 10px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #footer .footer-top {
     background: #151515;
-    border-bottom: 1px solid #222222;
+    border-bottom: 1px solid #151515;
     padding: 60px 0 30px 0;
+    background-color: #151515;
 }
 
 #footer .footer-top .footer-left {
     margin-bottom: 30px;
 }
 
-#footer .footer-top .footer-left h3 {
-    font-size: 28px;
-    margin: 0 0 20px 0;
-    padding: 2px 0 2px 0;
-    line-height: 1;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-#footer .footer-top .footer-left h3 span {
-    color: #012C4B;
-}
-
 #footer .footer-top .footer-links {
     margin-bottom: 30px;
 }
 
-#footer .footer-top .footer-left p {
-    font-size: 14px;
-    line-height: 24px;
-    margin-bottom: 0;
-    font-family: "Raleway", sans-serif;
-    color: #fff;
-}
 
 #footer .footer-top h4 {
     font-size: 16px;
@@ -127,11 +111,6 @@
     padding-bottom: 12px;
 }
 
-#footer .footer-top .footer-links h4 {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
 
 #footer .footer-top .footer-links h4 i {
     padding-right: 2px;
@@ -148,7 +127,7 @@
 }
 
 #footer .footer-top .footer-links h4 a:hover {
-    color: #012C4B;
+    color: #fff;
 }
 
 
@@ -408,4 +387,24 @@ a.socialIcon:hover, .socialHoverClass {
 
 .ans{
     font-style: italic;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.App {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    position: sticky;
+    top: 0;
+}
+
+section {
+    flex: 1;
 }
