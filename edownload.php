@@ -71,135 +71,135 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Potta+One&display=swap" rel="stylesheet">
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <link rel="icon" href="Assets/icoo.ico" type="image/x-icon">
+        <link rel="icon" href="Assets/Icon/icoo.ico" type="image/x-icon">
 
         <title>Encryptus</title>
     </head>
 
     <body>
 
-        <div class = "App">
-        <div class = "row">
-            <header id="header" class="fixed-top container-fluid">
-                <a href="index.php" style="text-decoration: none;">
-                    <img src="Assets/icoo.png" alt="Icon" class="icon">
-                    <div>
-                        <h2 class="hd">
-                            Encryptus<span class="he">.</span>
-                        </h2>
-                    </div>
-                </a>
-        </div>
-
-        <section id="pict" class="d-flex align-items-center justify-content-center">
-            <div class="container">
-                <div class = "row" style = "height: 60px;"></div>
-                <div class="row mb-4">
-                    <div class="col-lg-3"></div>
-
-                    <div class="col-lg-6 blk mb-4">
-
-                        <div class="typewriter">
-                            <h1>File ready to download..</h1>
+        <div class="App">
+            <div class="row">
+                <header id="header" class="fixed-top container-fluid">
+                    <a href="index.php" style="text-decoration: none;">
+                        <img src="Assets/Images/icoo.png" alt="Icon" class="icon">
+                        <div>
+                            <h2 class="hd">
+                                Encryptus<span class="he">.</span>
+                            </h2>
                         </div>
-                        <br>
-
-                        <h3 class="head">You can refer to the below details</h3>
-                        <br>
-
-                        <table style="width:100%">
-                            <tr>
-                                <td class="prop">File name: </td>
-                                <td class="ans"><span class="d-inline-block text-truncate" style="max-width: 230px;"><?php echo $file['name'] ?></span></td>
-                            </tr>
-                            <tr>
-                                <td class="prop">Password: </td>
-                                <td class="ans"><span class="d-inline-block text-truncate" style="max-width: 230px;"><?php echo $password ?></span></td>
-                            </tr>
-                            <tr>
-                                <td class="prop">File Size: </td>
-                                <td class="ans"><span class="d-inline-block text-truncate" style="max-width: 230px;"><?php echo $filesize ?></span></td>
-                            </tr>
-                        </table>
-                        <br>
-
-                        <div class="text-center">
-                            <button type="button" class="btn btn-outline-danger btn-sm " onclick='copyPassword()' id='copyPassword'>Copy Password</button>
-                            <br>
-                            <br>
-                            <h3 class="head">You can download the file</h3>
-                            <br>
-                            <a href="<?php echo "saveas.php?fileName=" . $file['name'] . "&&type=enc&&file=" . $outputLoc; ?>" onclick="downloaded()" id="downCompleted" class="btn btn-outline-danger btn-lg ">Download</a>
-                            <!-- <button href="<?php echo "saveas.php?fileName=" . $file['name'] . "&&type=enc&&file=" . $outputLoc; ?>" onclick='downloaded()' id='downCompleted' type="button" class="btn btn-outline-danger btn-lg ">Download</button> -->
-                        </div>
-                        <br>
-
-                        <h5 class="head">(OR)</h5>
-                        <br>
-
-                        <h5 class="head">Share link</h5>
-
-                        <div class="text-center">
-                            <ul class="social-network social-circle">
-                                <li> <a href="mailto:Enter_the_recipient_mail_address?Subject=Link To Download&amp;Body=Hello%20there!%0D%0AThere%20is%20a%20file%20waiting%20for%20you%20in%20our%20servers.. %0D%0A %0D%0A<?php echo $shareUisngLink ?>" onclick='shareUsingLink()' target='_blank' id='mail-link' class="icoen" title="Mail" id="mail-link"> <i class="fa fa-envelope" id="mail-icon"></i> </a> </li>
-                                <li> <a href="https://wa.me/?text=*Hello%20there!* %0aThere%20is%20a%20file%20waiting%20for%20you%20in%20our%20servers.. %0a %0a<?php echo $shareUisngLink ?>" onclick="shareUsingLink()" class="icoWhatsapp" id="whatsapp-link" title="Whatsapp" target='_blank'> <i class="fa fa-whatsapp" id="whatsapp-icon"></i> </a> </li>
-                                <li> <a onclick="copyLink()" href="javascript:void(0)" id="copy-link" class="icoShare" title="Share"> <i class="fa fa-link" id="copy-icon"></i> </a> </li>
-                                <br>
-                                <br>
-                                <a href="index.php"><input type="hidden" id="goBack" class="btn btn-outline-warning" value="Home page"></a>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div>
-
-                    </div>
-                </div>
-                <!-- <div class = "row " style = "height = 75px;"></div> -->
+                    </a>
             </div>
-            
-        </section>
 
-        <footer id="footer">
-            <div class="footer-top">
+            <section id="pict" class="d-flex align-items-center justify-content-center">
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-3 col-md-6 footer-links"></div>
-                        <div class="col-lg-6 col-md-6 footer-links">
-                            <h3 class="ft">The encryption genie is out of the bottle!</h3>
-                        </div>
-                        <div class="col-lg-3 col-md-6 footer-links"></div>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-lg-3 col-md-6 footer-links"></div>
-                        <div class="col-lg-6 col-md-6 footer-links">
-                            <div class="container">
-                                <div class="row justify-content-center">
+                    <div class="row" style="height: 60px;"></div>
+                    <div class="row mb-4">
+                        <div class="col-lg-3"></div>
 
-                                    <div class="col-lg-3 col-md-6 footer-links">
-                                        <h4><i class="bx bx-wifi-1 fa fa-facebook"></i> <a href="#">Facebook</a></li>
-                                    </div>
+                        <div class="col-lg-6 blk mb-4">
 
-                                    <div class="col-lg-3 col-md-6 footer-links">
-                                        <h4><i class="bx bx-wifi-1 fa fa-instagram"></i> <a href="#">Instagram</a></li>
-                                    </div>
+                            <div class="typewriter">
+                                <h1>File ready to download..</h1>
+                            </div>
+                            <br>
 
-                                    <div class="col-lg-3 col-md-6 footer-links">
-                                        <h4><i class="bx bx-wifi-1 fa fa-whatsapp"></i> <a href="#">Whatsapp</a></li>
-                                    </div>
+                            <h3 class="head">You can refer to the below details</h3>
+                            <br>
 
-                                    <div class="col-lg-3 col-md-6 footer-links">
-                                        <h4><i class="bx bx-wifi-1 fa fa-twitter"></i> <a href="#">Twitter</a></li>
-                                    </div>
+                            <table style="width:100%">
+                                <tr>
+                                    <td class="prop">File name: </td>
+                                    <td class="ans"><span class="d-inline-block text-truncate" style="max-width: 230px;"><?php echo $file['name'] ?></span></td>
+                                </tr>
+                                <tr>
+                                    <td class="prop">Password: </td>
+                                    <td class="ans"><span class="d-inline-block text-truncate" style="max-width: 230px;"><?php echo $password ?></span></td>
+                                </tr>
+                                <tr>
+                                    <td class="prop">File Size: </td>
+                                    <td class="ans"><span class="d-inline-block text-truncate" style="max-width: 230px;"><?php echo $filesize ?> KB</span></td>
+                                </tr>
+                            </table>
+                            <br>
 
-                                </div>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-outline-danger btn-sm " onclick='copyPassword()' id='copyPassword'>Copy Password</button>
+                                <br>
+                                <br>
+                                <h3 class="head">You can download the file</h3>
+                                <br>
+                                <a href="<?php echo "saveas.php?fileName=" . $file['name'] . "&&type=enc&&file=" . $outputLoc; ?>" onclick="downloaded()" id="downCompleted" class="btn btn-outline-danger btn-lg ">Download</a>
+                                <!-- <button href="<?php echo "saveas.php?fileName=" . $file['name'] . "&&type=enc&&file=" . $outputLoc; ?>" onclick='downloaded()' id='downCompleted' type="button" class="btn btn-outline-danger btn-lg ">Download</button> -->
+                            </div>
+                            <br>
+
+                            <h5 class="head">(OR)</h5>
+                            <br>
+
+                            <h5 class="head">Share link</h5>
+
+                            <div class="text-center">
+                                <ul class="social-network social-circle">
+                                    <li> <a href="mailto:Enter_the_recipient_mail_address?Subject=Link To Download&amp;Body=Hello%20there!%0D%0AThere%20is%20a%20file%20waiting%20for%20you%20in%20our%20servers.. %0D%0A %0D%0A<?php echo $shareUisngLink ?>" onclick='shareUsingLink()' target='_blank' id='mail-link' class="icoen" title="Mail" id="mail-link"> <i class="fa fa-envelope" id="mail-icon"></i> </a> </li>
+                                    <li> <a href="https://wa.me/?text=*Hello%20there!* %0aThere%20is%20a%20file%20waiting%20for%20you%20in%20our%20servers.. %0a %0a<?php echo $shareUisngLink ?>" onclick="shareUsingLink()" class="icoWhatsapp" id="whatsapp-link" title="Whatsapp" target='_blank'> <i class="fa fa-whatsapp" id="whatsapp-icon"></i> </a> </li>
+                                    <li> <a onclick="copyLink()" href="javascript:void(0)" id="copy-link" class="icoShare" title="Share"> <i class="fa fa-link" id="copy-icon"></i> </a> </li>
+                                    <br>
+                                    <br>
+                                    <a href="index.php"><input type="hidden" id="goBack" class="btn btn-outline-warning" value="Home page"></a>
+                                </ul>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 footer-links"></div>
+
+                        <div>
+
+                        </div>
+                    </div>
+                    <!-- <div class = "row " style = "height = 75px;"></div> -->
+                </div>
+
+            </section>
+
+            <footer id="footer">
+                <div class="footer-top">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-3 col-md-6 footer-links"></div>
+                            <div class="col-lg-6 col-md-6 footer-links">
+                                <h3 class="ft">The encryption genie is out of the bottle!</h3>
+                            </div>
+                            <div class="col-lg-3 col-md-6 footer-links"></div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-lg-3 col-md-6 footer-links"></div>
+                            <div class="col-lg-6 col-md-6 footer-links">
+                                <div class="container">
+                                    <div class="row justify-content-center">
+
+                                        <div class="col-lg-3 col-md-6 footer-links">
+                                            <h4><i class="bx bx-wifi-1 fa fa-facebook"></i> <a href="#">Facebook</a></li>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6 footer-links">
+                                            <h4><i class="bx bx-wifi-1 fa fa-instagram"></i> <a href="#">Instagram</a></li>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6 footer-links">
+                                            <h4><i class="bx bx-wifi-1 fa fa-whatsapp"></i> <a href="#">Whatsapp</a></li>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6 footer-links">
+                                            <h4><i class="bx bx-wifi-1 fa fa-twitter"></i> <a href="#">Twitter</a></li>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 footer-links"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

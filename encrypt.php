@@ -12,23 +12,23 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Potta+One&display=swap" rel="stylesheet">
-    <link rel="icon" href="Assets/icoo.ico" type="image/x-icon">
+    <link rel="icon" href="Assets/Icon/icoo.ico" type="image/x-icon">
     <title>Encryptus</title>
 </head>
 
 <body>
 
-        <div>
-            <header id="header" class="fixed-top container-fluid">
-                <a href="index.php" style="text-decoration: none;">
-                    <img src="Assets/icoo.png" alt="Icon" class = "icon">
-                    <div>
-                        <h2 class="hd">
-                            Encryptus<span class = "he">.</span>
-                        </h2>
-                    </div>
-                </a>
-        </div>
+    <div>
+        <header id="header" class="fixed-top container-fluid">
+            <a href="index.php" style="text-decoration: none;">
+                <img src="Assets/Images/icoo.png" alt="Icon" class="icon">
+                <div>
+                    <h2 class="hd">
+                        Encryptus<span class="he">.</span>
+                    </h2>
+                </div>
+            </a>
+    </div>
 
     <section id="pict" class="d-flex align-items-center justify-content-center">
         <div class="container">
@@ -45,7 +45,7 @@
                         <div class="typewriter">
                             <h1>To Encrypt...</h1>
                             <br>
-                            
+
                             <div class="file-upload">
 
                                 <div class="file-select">
@@ -66,9 +66,9 @@
                             <br>
                             <input type="radio" name="passwordType" value="useGiven" id="userPass" onclick="userPassword()">
                             <label for="userPass">
-                                <p class="rad">Personal Password</p>
+                                <p class="rad">Personal Password&nbsp;&nbsp;:&nbsp;&nbsp;</p>
                             </label>
-                            <br>
+                            <!-- <br> -->
                             <input type="password" class="form-control-sm isDisabled" name="userPassEntered" id="userPassType" placeholder="Enter the password" disabled>
                         </div>
                         <br>
@@ -116,7 +116,7 @@
                                 </div>
 
                                 <div class="col-lg-3 col-md-6 footer-links">
-                                    <h4><i class="bx bx-wifi-1 fa fa-twitter"></i> <a href="#">Twitter</a></li>
+                                    <h4><i class="bx bx-wifi-1 fa fa-github"></i> <a href="https://github.com/ManojAvarur/Cloud-Encryption/tree/final" target="_blank">GitHub</a></li>
                                 </div>
 
                             </div>
