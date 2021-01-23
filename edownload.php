@@ -141,8 +141,8 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
 
                             <div class="text-center">
                                 <ul class="social-network social-circle">
-                                    <li> <a href="mailto:Enter_the_recipient_mail_address?Subject=Link To Download&amp;Body=Hello%20there!%0D%0AThere%20is%20a%20file%20waiting%20for%20you%20in%20our%20servers.. %0D%0A %0D%0A<?php echo $shareUisngLink ?>" onclick='shareUsingLink()' target='_blank' id='mail-link' class="icoen" title="Mail" id="mail-link"> <i class="fa fa-envelope" id="mail-icon"></i> </a> </li>
-                                    <li> <a href="https://wa.me/?text=*Hello%20there!* %0aThere%20is%20a%20file%20waiting%20for%20you%20in%20our%20servers.. %0a %0a<?php echo $shareUisngLink ?>" onclick="shareUsingLink()" class="icoWhatsapp" id="whatsapp-link" title="Whatsapp" target='_blank'> <i class="fa fa-whatsapp" id="whatsapp-icon"></i> </a> </li>
+                                    <li> <a href="mailto:Enter_the_recipient_mail_address?Subject=Link To Download&amp;Body=Hello%20there!%0D%0AThere%20is%20a%20file%20waiting%20for%20you%20in%20our%20servers.. %0D%0A %0D%0A<?php echo $shareUisngLink ?>%0D%0A %0D%0A NOTE: The file will only be availabe for 1 download (or) 1 day" onclick='shareUsingLink()' target='_blank' id='mail-link' class="icoen" title="Mail" id="mail-link"> <i class="fa fa-envelope" id="mail-icon"></i> </a> </li>
+                                    <li> <a href="https://wa.me/?text=*Hello%20there!* %0aThere%20is%20a%20file%20waiting%20for%20you%20in%20our%20servers.. %0a %0a<?php echo $shareUisngLink ?> %0a %0a*NOTE:* The file will only be availabe for 1 download (or) 1 day" onclick="shareUsingLink()" class="icoWhatsapp" id="whatsapp-link" title="Whatsapp" target='_blank'> <i class="fa fa-whatsapp" id="whatsapp-icon"></i> </a> </li>
                                     <li> <a onclick="copyLink()" href="javascript:void(0)" id="copy-link" class="icoShare" title="Share"> <i class="fa fa-link" id="copy-icon"></i> </a> </li>
                                     <br>
                                     <br>
