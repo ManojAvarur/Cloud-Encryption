@@ -1,11 +1,13 @@
 <?php
     include '_headers/headers.php';
 
-    if (isset($_GET['filename']) && !empty($_GET['filename']) && file_exists('ToShare/' . $_GET['filename'])) {
+    if (isset($_GET['filename']) && !empty($_GET['filename']) && file_exists('ToShare/' .  $_GET['filename'] ) ) {
 
-        $file_name = substr($_GET['filename'], 49);
+        $urlDecoded =  $_GET['filename'] ;
 
-        $filesize = filesize('ToShare/' . $_GET['filename']);
+        $file_name = substr($urlDecoded, 49);
+
+        $filesize = filesize('ToShare/' . $urlDecoded);
 
         $filesize = round($filesize / 1024, 1);
 
@@ -167,34 +169,47 @@
                     document.querySelector('#form').reportValidity();
                 }
 
-                var loc = "<?php echo "?fileName=" . $file_name . "&&type=dec&&file=" . $_GET['filename'] ?>";
+                var loc = "<?php echo "?fileName=" . $file_name . "&&type=dec&&file=" . $urlDecoded ?>";
 
                 <?php
                     echo "
                         var filename = '" . $file_name . "';
                         var type = 'dec';
-                        var file = '".$_GET['filename']."';
+                        var file = '".$urlDecoded."';
                     ";
                 ?>
+
+                var loc = "?fileName="+encodeURIComponent(filename)+"&&type=dec&&file="+encodeURIComponent(file);
                 
-                var link = "?fileName="+encodeURIComponent(filename)+"&&type=dec&&file="+encodeURIComponent(file);
+                // alert(pass.value);
+                var link = "?fileName="+encodeURIComponent(filename)+"&&type=dec&&file="+encodeURIComponent(file)+"&&password="+encodeURIComponent(pass.value);
 
                 var xhttp = new XMLHttpRequest();
-                // alert( encodeURIComponent('decryptlink.php'+loc+'&&password='+pass.value) );
+
+                // alert( encodeURIComponent(pass.value) );
                 
-                xhttp.open("GET", 'decryptlink.php?'+link+'&&password='+encodeURIComponent(pass.value) , true);
+                // xhttp.open("GET", 'decryptlink.php?'+link+'&&password='+encodeURIComponent(pass.value) , true);
+                // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                // xhttp.send();
+
+                 xhttp.open("POST", 'decryptlink.php' , true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send();
+                xhttp.send(link);
+
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 201) {
+
                         alert('<?php echo $file_name ?>\n404 - file not found');
+
                     } else if (this.readyState == 4 && this.status == 200) {
+
                         var dwnb = document.getElementById('downCompleted');
                         document.getElementById('download-text').classList.remove('isDisabled');
                         dwnb.href = "saveas.php"+loc;
                         dwnb.classList.remove('isDisabled');
                         dwnb.onclick = function(){ downloaded() };
                         // dwnb.target = '_blank';
+
                     }
                 };
                 return false;

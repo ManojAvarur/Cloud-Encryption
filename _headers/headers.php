@@ -99,7 +99,7 @@ function shortLinkUsingBitly($long_url){
    
     // $long_url = 'https://stackoverflow.com/questions/ask';
     $apiv4 = 'https://api-ssl.bitly.com/v4/bitlinks';
-    $genericAccessToken = 'f7b23ac648483e62c87b8681af6787bfdb6a17d3';
+    $genericAccessToken = 'a2611a7304e264a2aadfa5886ed30e98c993c088';
 
     $data = array(
         'long_url' => $long_url
@@ -136,7 +136,7 @@ function shortLinkUsingBitly($long_url){
 function Cutly( $long_url ){
 
     $url = urlencode($long_url);
-    $json = file_get_contents('https://cutt.ly/api/api.php?key=2aa8f088ef9ea9912ace5c95b18f433b5efa0&short='.$url);
+    $json = file_get_contents('https://cutt.ly/api/api.php?key=967355dbfd720d9e1ef0c28db6999c5e14fec&short='.$url);
     $data = json_decode($json,true);
 
     // var_dump($data);
@@ -145,7 +145,9 @@ function Cutly( $long_url ){
     if( $data['url']['status'] == 7 ){
         return $data['url']['shortLink'];
     } else {
-        return shortLinkUsingBitly( $long_url );
+        return  shortLinkUsingBitly( $long_url ) ;
     }
+
+    // return $data['url']['status'];
 
 }

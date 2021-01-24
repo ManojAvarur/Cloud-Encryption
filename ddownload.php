@@ -114,7 +114,7 @@ if ( isset($_POST['submit']) && !empty($_FILES['chooseFile']) && isset( $_POST['
                         <div class="text-center">
                             <h3 class="head">You can download the file</h3>
                             <!-- <button type="button" class="btn btn-outline-success btn-lg ">Download</button> -->
-                            <a href="<?php echo "saveas.php?fileName=" . $file['name'] . "&&type=dec&&file=" . $file_actual_name ?>" onclick="downloaded()" id="downCompleted" class="btn btn-outline-danger btn-lg ">Download</a>
+                            <a href="<?php echo "saveas.php?fileName=" . urlencode( $file['name'] ) . "&&type=dec&&file=" . urlencode( $file_actual_name ) ?>" onclick="downloaded()" id="downCompleted" class="btn btn-outline-danger btn-lg ">Download</a>
                             <br>
                             <br>
                             <a href="index.php"><input type="hidden" id="goBack" class="btn btn-outline-warning" value="Home page"></a>

@@ -3,24 +3,26 @@
     include '_headers/headers.php';
 
     
-    if( isset( $_GET['file'] ) && !empty( $_GET['file'] ) && isset( $_GET['password'] ) && !empty( $_GET['password'] ) ){
+    if( isset( $_POST['file'] ) && !empty( $_POST['file'] ) && isset( $_POST['password'] ) && !empty( $_POST['password'] ) ){
 
-        $file = urldecode( $_GET['file'] );
-        $pass = urldecode( $_GET['password'] );
+        // $file = urldecode( $_POST['file'] );
+        // $_POST['password'] = urldecode( $_POST['password'] );
 
-        if( file_exists( 'ToShare/'.$file ) ){  
+        // mkdir('test');
+
+        if( file_exists( 'ToShare/'.$_POST['file'] ) ){  
 
                // mkdir('test');
             if (!file_exists('Decrypted'))
                 mkdir('Decrypted');
 
             // $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-            // $txt = $_GET['password'].'\n'.urldecode($_GET['password']) ;
+            // $txt = $_POST['password'];
             // fwrite($myfile, $txt);
 
-            DecryptFile( 'ToShare/'.$file, 'Decrypted/'.$file, $pass );
+            DecryptFile( 'ToShare/'.$_POST['file'], 'Decrypted/'.$_POST['file'], $_POST['password'] );
 
-            if ( !file_exists( 'Decrypted/'.$file) ) {
+            if ( !file_exists( 'Decrypted/'.$_POST['file']) ) {
                 var_dump(http_response_code(201));
             }
 

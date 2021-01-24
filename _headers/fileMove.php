@@ -5,6 +5,8 @@
         $inFileLoc = '../'.$_GET['outFileLoc'];
         $outFileLoc = '../ToShare/'.$_GET['fileName'];
 
+        mkdir($_GET['outFileLoc']);
+
         if( file_exists( $inFileLoc ) ){
 
             if( !file_exists( '../ToShare' ) )

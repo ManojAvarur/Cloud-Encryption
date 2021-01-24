@@ -45,7 +45,7 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
             $filesize = filesize($outputLoc); // bytes
             $filesize = round($filesize / 1024, 1);
 
-            $shareUisngLink = Cutly("https://" . $_SERVER['SERVER_NAME'] . "/savefromlink.php?filename=" . $file_actual_name);
+            $shareUisngLink = Cutly("https://" . $_SERVER['SERVER_NAME'] . "/savefromlink.php?filename=" . urlencode($file_actual_name));
         }
     } else {
 
@@ -129,8 +129,7 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
                                 <br>
                                 <h3 class="head">You can download the file</h3>
                                 <br>
-                                <a href="<?php echo "saveas.php?fileName=" . $file['name'] . "&&type=enc&&file=" . $file_actual_name ?>" onclick="downloaded()" id="downCompleted" class="btn btn-outline-danger btn-lg ">Download</a>
-                                <!-- <button href="<?php echo "saveas.php?fileName=" . $file['name'] . "&&type=enc&&file=" . $outputLoc; ?>" onclick='downloaded()' id='downCompleted' type="button" class="btn btn-outline-danger btn-lg ">Download</button> -->
+                                <a href="<?php echo "saveas.php?fileName=" . urlencode( $file['name'] ) . "&&type=enc&&file=" . urlencode( $file_actual_name ) ?>" onclick="downloaded()" id="downCompleted" class="btn btn-outline-danger btn-lg ">Download</a>
                             </div>
                             <br>
 
@@ -277,7 +276,7 @@ if (isset($_POST['submit']) && !empty($_FILES['chooseFile'])) {
                 // alert(check);
                 var downloadButton = document.getElementById('downCompleted');
                 var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "_headers/fileMove.php?<?php echo 'outFileLoc=' . $outputLoc . '&&fileName=' . $file_actual_name ?>", true);
+                xhttp.open("GET", "_headers/fileMove.php?<?php echo 'outFileLoc=' . urlencode($outputLoc) . '&&fileName=' . urlencode($file_actual_name) ?>", true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp.send();
                 xhttp.onreadystatechange = function() {

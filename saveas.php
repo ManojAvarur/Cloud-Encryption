@@ -4,7 +4,8 @@
 
         // $file = "Decrypted/".$_GET['file'];
         $file = ( $_GET['type'] == 'enc' )? "Encrypted/".$_GET['file'] : "Decrypted/".$_GET['file'];
-        
+        // echo $file;
+        // die('');
         if( file_exists( $file ) ){
 
             header('Content-Description: File Transfer');
