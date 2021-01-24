@@ -168,10 +168,21 @@
                 }
 
                 var loc = "<?php echo "?fileName=" . $file_name . "&&type=dec&&file=" . $_GET['filename'] ?>";
-                var xhttp = new XMLHttpRequest();
-                // alert('decryptlink.php'+loc+'&&password='+pass);
+
+                <?php
+                    echo "
+                        var filename = '" . $file_name . "';
+                        var type = 'dec';
+                        var file = '".$_GET['filename']."';
+                    ";
+                ?>
                 
-                xhttp.open("GET", 'decryptlink.php'+loc+"&&password="+pass.value , true);
+                var link = "?fileName="+encodeURIComponent(filename)+"&&type=dec&&file="+encodeURIComponent(file);
+
+                var xhttp = new XMLHttpRequest();
+                // alert( encodeURIComponent('decryptlink.php'+loc+'&&password='+pass.value) );
+                
+                xhttp.open("GET", 'decryptlink.php?'+link+'&&password='+encodeURIComponent(pass.value) , true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp.send();
                 xhttp.onreadystatechange = function() {
