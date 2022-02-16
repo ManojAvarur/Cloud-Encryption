@@ -4,6 +4,17 @@ files_extension_to_move = ["srt", "vtt"]
 NEW_DIR_NAME = "SRT and VTT files"
 CUR_DIR = path.dirname( __file__ )
 
+def printProgressBar (iteration, total, prefix = 'Progress:', suffix = 'Complete', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
+    
+    percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
+    filledLength = int(length * iteration // total)
+    bar = fill * filledLength + '-' * (length - filledLength)
+    print(f'\r{prefix} |{bar}| {percent}% {suffix}', end = printEnd)
+    # Print New Line on Complete
+    if iteration == total: 
+        print()
+
+
 def move_srt_and_vtt_files( dir_name = CUR_DIR ):
 
     files_to_be_moved = []
@@ -33,9 +44,11 @@ def delete_srt():
     files_to_be_moved = move_srt_and_vtt_files()
 
     ans = input(f"\n\nAre you sure you want to delete the {NEW_DIR_NAME}? [ y or n ] : ").lower()
+    print("\n")
+    
     if ans in ["yes","y","1"]:
         
-        for file in files_to_be_moved:
+        for i, file in enumerate( files_to_be_moved ):
 
             folder_name = path.dirname( file )
             moved_files_dir_name = NEW_DIR_NAME
@@ -50,6 +63,8 @@ def delete_srt():
                     destination_file.writelines( data )
 
             remove( file )
+
+            printProgressBar( i + 1, len( files_to_be_moved ) )
 
         input("\nProcess completed successfully!\nPress Enter to exit.")
     else:
@@ -93,10 +108,11 @@ def undo_delete_srt():
     undo_files = undo_move_srt_and_vtt_files()
     
     ans = input(f"\n\nAre you sure you want to undo the Move of {NEW_DIR_NAME}? [ y or n ] : ").lower()
+    print("\n")
 
     if ans in ["yes","y","1"]:
 
-        for file in undo_files:
+        for i, file in enumerate( undo_files ):
             
             move_files_dir = file.split("\\")
 
@@ -112,6 +128,8 @@ def undo_delete_srt():
                     destination_file.writelines( data )
         
             remove( file )
+
+            printProgressBar( i + 1, len( undo_files ), length=50 )
 
         for i in delete_folders:
             rmdir( i )
@@ -144,7 +162,3 @@ if __name__ == "__main__":
     else :
 
         input("\nUnknown option selected.\nPress ' Enter / Return ' to exit")
-
-
-                    
-            
