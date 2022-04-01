@@ -4,6 +4,7 @@ files_extension_to_move = ["srt", "vtt"]
 NEW_DIR_NAME = "SRT and VTT files"
 CUR_DIR = path.dirname( __file__ )
 
+
 def printProgressBar (iteration, total, prefix = 'Progress:', suffix = 'Complete', decimals = 1, length = 100, fill = '█', printEnd = "\r"):
     
     percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
@@ -42,6 +43,7 @@ def move_srt_and_vtt_files( dir_name = CUR_DIR ):
 def delete_srt():
 
     files_to_be_moved = move_srt_and_vtt_files()
+    undeleted_files = []
 
     ans = input(f"\n\nAre you sure you want to delete the {NEW_DIR_NAME}? [ y or n ] : ").lower()
     print("\n")
@@ -62,9 +64,34 @@ def delete_srt():
                     data = source_file.readlines()
                     destination_file.writelines( data )
 
-            remove( file )
+            try:
+                remove( file )
+            except Exception as errorInfo:
+                undeleted_files.append({ 
+                    "fileLocation": file, 
+                    "reason": errorInfo
+                })
 
             printProgressBar( i + 1, len( files_to_be_moved ) )
+
+        
+        while ( len( undeleted_files ) > 0 ):
+
+            print("\n\n-------------------------------------------\n")
+            
+            for file in undeleted_files:
+                print("File ' {} ' not deleted because of ' {} '".format( file["fileLocation"] ,  file["reason"] ) )
+
+            print("\n\n-------------------------------------------\n")
+            input("\nPlease take necessary action before retrying\nPress Enter to retry or Press X (Close Terminal) to exit")
+            
+
+            for i, file in enumerate(undeleted_files):
+                try:
+                    remove( file["fileLocation"] )
+                    undeleted_files.pop(i)
+                except  Exception as errorInfo:
+                    file["reason"] = errorInfo
 
         input("\nProcess completed successfully!\nPress Enter to exit.")
     else:
@@ -98,8 +125,6 @@ def undo_move_srt_and_vtt_files( dir_name = CUR_DIR ):
         
     return file_move_from_loc
                 
-
-
 
 def undo_delete_srt():
 
